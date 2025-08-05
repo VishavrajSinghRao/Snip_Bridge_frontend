@@ -85,3 +85,21 @@
     display: none;
   }
 }
+/* ...existing styles... */
+
+.admin-login-button,
+.switch-user-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-login-button:hover,
+.switch-user-button:hover {
+  background-color: #1d4ed8;
+}

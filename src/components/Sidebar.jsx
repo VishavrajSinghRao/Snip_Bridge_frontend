@@ -2,12 +2,13 @@ import React from 'react';
 import { BarChart3, Search, Database, Users, Settings } from 'lucide-react';
 import './Sidebar.css';
 
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, role }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-    { id: 'query', label: 'Query Interface', icon: Search },
+    { id: 'query', label: 'Dataset Explorer', icon: Search },
     { id: 'datasets', label: 'Datasets', icon: Database },
-    { id: 'users', label: 'Users', icon: Users },
+    // Only include "Users" if admin
+    ...(role === 'admin' ? [{ id: 'users', label: 'Users', icon: Users }] : []),
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 

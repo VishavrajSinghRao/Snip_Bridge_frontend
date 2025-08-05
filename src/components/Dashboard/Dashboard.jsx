@@ -46,7 +46,7 @@ const Dashboard = ({ dashboardStats, apiUsageData, queries }) => {
 
       {/* Charts */}
       <div className="dashboard-charts">
-        <APIUsageChart data={apiUsageData} />
+        {apiUsageData && <APIUsageChart data={apiUsageData} />}
         <RecentActivity queries={queries} />
       </div>
     </div>
