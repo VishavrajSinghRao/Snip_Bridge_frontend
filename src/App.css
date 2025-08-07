@@ -352,3 +352,52 @@ body {
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
+
+/* Get Started button */
+/* Center the container on the page */
+#button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* full viewport height */
+}
+
+Style the button
+.smooth-green-btn {
+  background-color: #28a745; /* green color */
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* smooth effect */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.smooth-green-btn:hover {
+  background-color: #218838; /* slightly darker green */
+  transform: translateY(-2px); /* subtle lift effect */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+/* App.css */
+
+/* Add these new rules to your existing App.css file */
+
+.app { 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.app-body { 
+  display: flex; 
+  flex: 1; 
+}
+
+.sidebar { 
+  height: 100%; 
+}
+
+/* Your existing CSS rules will remain below... */

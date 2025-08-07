@@ -5,11 +5,11 @@ const StatsCard = ({ title, value, icon: Icon, color }) => {
   return (
     <div className={`stats-card stats-card-${color}`}>
       <div className="stats-card-content">
-        <div className="stats-card-text">
-          <p className="stats-card-title">{title}</p>
-          <p className="stats-card-value">{value}</p>
+        <div className="stats-card-header">
+          <h3 className="stats-card-title">{title}</h3>
+          <Icon className="stats-card-icon" />
         </div>
-        <Icon className="stats-card-icon" />
+        <div className="stats-card-value">{value}</div>
       </div>
     </div>
   );

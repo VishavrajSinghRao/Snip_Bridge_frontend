@@ -59,3 +59,18 @@
     gap: 0.5rem;
   }
 }
+.card.queries {
+  background: linear-gradient(135deg, #007CF0, #00DFD8);
+}
+
+.card.datasets {
+  background: linear-gradient(135deg, #7928CA, #FF0080);
+}
+
+.card.users {
+  background: linear-gradient(135deg, #FF4E50, #F9D423);
+}
+
+.card.uptime {
+  background: linear-gradient(135deg, #43CEA2, #185A9D);
+}

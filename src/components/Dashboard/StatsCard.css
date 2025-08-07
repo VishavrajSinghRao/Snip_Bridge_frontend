@@ -1,45 +1,87 @@
+/* StatsCard.css */
 .stats-card {
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  color: white;
+  padding: 24px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 240px;
+  flex: 1;
 }
 
-.stats-card-blue {
-  background: linear-gradient(to right, #3b82f6, #2563eb);
-}
-
-.stats-card-green {
-  background: linear-gradient(to right, #10b981, #059669);
-}
-
-.stats-card-purple {
-  background: linear-gradient(to right, #8b5cf6, #7c3aed);
-}
-
-.stats-card-orange {
-  background: linear-gradient(to right, #f59e0b, #d97706);
+.stats-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .stats-card-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stats-card-header {
+  display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .stats-card-title {
-  margin: 0 0 0.5rem 0;
-  opacity: 0.8;
-  font-size: 0.875rem;
-}
-
-.stats-card-value {
+  font-size: 14px;
+  font-weight: 500;
   margin: 0;
-  font-size: 1.875rem;
-  font-weight: bold;
+  color: white;
+  opacity: 0.9;
 }
 
 .stats-card-icon {
-  width: 2rem;
-  height: 2rem;
-  opacity: 0.7;
+  width: 24px;
+  height: 24px;
+  color: white;
+  opacity: 0.8;
+}
+
+.stats-card-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+/* Color Variants */
+.stats-card-blue {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+}
+
+.stats-card-green {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.stats-card-purple {
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+}
+
+.stats-card-orange {
+  background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stats-card {
+    padding: 20px;
+    min-width: auto;
+  }
+  
+  .stats-card-value {
+    font-size: 28px;
+  }
+  
+  .stats-card-title {
+    font-size: 13px;
+  }
+  
+  .stats-card-icon {
+    width: 20px;
+    height: 20px;
+  }
 }

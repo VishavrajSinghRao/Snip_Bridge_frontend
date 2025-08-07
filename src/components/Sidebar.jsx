@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, Search, Database, Users, Settings } from 'lucide-react';
+import { BarChart3, Search, Database, Users, Settings, HelpCircle } from 'lucide-react';
 import './Sidebar.css';
 
 const Sidebar = ({ activeTab, setActiveTab, role }) => {
@@ -9,7 +9,8 @@ const Sidebar = ({ activeTab, setActiveTab, role }) => {
     { id: 'datasets', label: 'Datasets', icon: Database },
     // Only include "Users" if admin
     ...(role === 'admin' ? [{ id: 'users', label: 'Users', icon: Users }] : []),
-    { id: 'settings', label: 'Settings', icon: Settings }
+    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'Manual', label: 'Manual', icon: HelpCircle }
   ];
 
   return (

@@ -8,6 +8,7 @@ const Header = ({ isAdmin, onLoginClick }) => {
       <div className="header-container">
         <div className="header-content">
           <div className="header-left">
+            
             <div className="header-logo">
               <Database className="header-logo-icon" />
               <h1 className="header-title">Survey API Gateway</h1>
