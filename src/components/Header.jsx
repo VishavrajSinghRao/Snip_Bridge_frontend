@@ -4,6 +4,8 @@ import './Header.css';
 
 const Header = ({ isAdmin, onLoginClick }) => {
   return (
+
+   
     <header className="header">
       <div className="header-container">
         <div className="header-content">

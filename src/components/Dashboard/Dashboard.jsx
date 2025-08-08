@@ -101,7 +101,7 @@ const Dashboard = ({ dashboardStats, apiUsageData, queries }) => {
       {/* Stats Cards */}
       <div className="dashboard-stats">
         <StatsCard
-          title="Total Queries"
+          title="Total Downloads"
           value={dashboardStats.totalQueries.toLocaleString()}
           icon={BarChart3}
           color="blue"
