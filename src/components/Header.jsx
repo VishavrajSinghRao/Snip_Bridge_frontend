@@ -33,7 +33,7 @@ const Header = ({ isAdmin, onLoginClick }) => {
             }}
           >
             <img 
-              src="/public/WhatsApp Image 2025-08-12 at 20.01.44_37546c84.jpg" 
+              src="/WhatsApp Image 2025-08-12 at 20.01.44_37546c84.jpg" 
               alt="Right Corner" 
               style={{ 
                 height: '100%', 

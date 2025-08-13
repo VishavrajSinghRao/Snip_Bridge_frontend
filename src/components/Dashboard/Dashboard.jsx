@@ -140,7 +140,7 @@ const Dashboard = ({ dashboardStats, apiUsageData, queries }) => {
 
       </div>
 
-      {/* ✅ Visitor Counter added at the bottom */}
+    
 
     </div>
   );
