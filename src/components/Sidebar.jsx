@@ -9,8 +9,8 @@ const Sidebar = ({ activeTab, setActiveTab, role }) => {
     { id: 'datasets', label: 'Datasets', icon: Database },
     // Only include "Users" if admin
     ...(role === 'admin' ? [{ id: 'users', label: 'Users', icon: Users }] : []),
-    { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'Manual', label: 'Manual', icon: HelpCircle }
+    
+    { id: 'Manual', label: 'User Guide', icon: HelpCircle }
   ];
 
   return (

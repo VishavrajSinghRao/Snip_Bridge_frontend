@@ -29,7 +29,9 @@ const Manual = () => {
   };
 
   const manualSections = [
-    {
+    // ... your existing sections (unchanged) ...
+
+ {
       id: 'getting-started',
       title: 'Getting Started',
       icon: <BookOpen size={20} />,
@@ -284,6 +286,24 @@ const Manual = () => {
           content: 'For technical support or data access requests, contact the MoSPI IT Support team at support@mospi.gov.in'
         }
       ]
+    },
+
+    {
+      id: 'video-tutorial',
+      title: 'Video Tutorial',
+      icon: <Play size={20} />,
+      content: [
+        {
+          title: 'Watch the Overview Video',
+          content: `
+            <p>Here is a step-by-step walkthrough of how to use the Survey API Gateway platform.</p>
+           <div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/718yxpT-eTM?si=fIbVXdPFGAbZP28j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+          `
+        }
+      ]
     }
   ];
 
@@ -300,7 +320,7 @@ const Manual = () => {
       <div className="manual-content">
         {manualSections.map((section) => (
           <div key={section.id} className="manual-section">
-            <div 
+            <div
               className="section-header"
               onClick={() => toggleSection(section.id)}
             >
@@ -308,8 +328,8 @@ const Manual = () => {
                 {section.icon}
                 <h2>{section.title}</h2>
               </div>
-              {expandedSections[section.id] ? 
-                <ChevronDown size={20} /> : 
+              {expandedSections[section.id] ?
+                <ChevronDown size={20} /> :
                 <ChevronRight size={20} />
               }
             </div>
@@ -319,7 +339,7 @@ const Manual = () => {
                 {section.content.map((item, index) => (
                   <div key={index} className="content-item">
                     <h3>{item.title}</h3>
-                    <div 
+                    <div
                       className="content-text"
                       dangerouslySetInnerHTML={{ __html: item.content }}
                     />

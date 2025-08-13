@@ -1,5 +1,5 @@
 
- import OpeningAnimation from './App_files/OpeningAnimation';
+import OpeningAnimation from './App_files/OpeningAnimation';
 import AdminLogin from './App_files/AdminLogin';
 import OpeningAnimationScene from './App_files/OpeningAnimationScene.jsx';
 import React, { useState, useEffect, useRef, Suspense } from 'react';
@@ -117,15 +117,7 @@ const App = () => {
 
   // Example data for the dashboard
   const dashboardStats = { totalQueries: 125670, activeDatasets: 24, totalUsers: 342, systemUptime: '99.8%' };
-  const apiUsageData = [
-    { month: 'Jan', queries: 8500, users: 120 },
-    { month: 'Feb', queries: 9200, users: 135 },
-    { month: 'Mar', queries: 7800, users: 115 },
-    { month: 'Apr', queries: 10500, users: 150 },
-    { month: 'May', queries: 11200, users: 165 },
-    { month: 'Jun', queries: 9800, users: 140 }
-  ];
-
+  
   const queries = [
     { id: 1, query: 'SELECT * FROM plfs WHERE ...', dataset: 'PLFS 2023-24', timestamp: '2024-01-25 14:30', resultCount: 1250 },
     { id: 2, query: 'SELECT ...', dataset: 'NSS Consumer Expenditure', timestamp: '2024-01-25 13:45', resultCount: 36 },
@@ -135,6 +127,22 @@ const App = () => {
   const [currentQuery, setCurrentQuery] = useState('');
   const [selectedDataset, setSelectedDataset] = useState('');
   const [queryResults, setQueryResults] = useState(null);
+
+
+const apiUsageData = [
+  { month: 'Jan', queries: 1200, users: 150 },
+  { month: 'Feb', queries: 2100, users: 180 },
+  { month: 'Mar', queries: 1800, users: 165 },
+  { month: 'Apr', queries: 2500, users: 200 },
+  { month: 'May', queries: 3000, users: 230 },
+  { month: 'Jun', queries: 2800, users: 210 },
+  { month: 'Jul', queries: 3500, users: 260 },
+  { month: 'Aug', queries: 4000, users: 300 },
+  { month: 'Sep', queries: 3700, users: 280 },
+  { month: 'Oct', queries: 4200, users: 320 },
+  { month: 'Nov', queries: 3900, users: 295 },
+  { month: 'Dec', queries: 4500, users: 340 },
+];
 
 
 
@@ -201,6 +209,7 @@ const App = () => {
       default:
         return <Dashboard dashboardStats={dashboardStats} apiUsageData={apiUsageData} queries={queries} />;
     }
+  
   };
 
   // Main App Layout Component
@@ -229,7 +238,6 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Main login/signup route */}
         <Route
           path="/"
           element={
@@ -258,8 +266,57 @@ const App = () => {
           path="*"
           element={<Navigate to="/" />}
         />
+        
+     
+
+      
+
+
+        
+    
       </Routes>
     </Router>
+
+    /* shubham whatsapp */
+
+    //     <Router>
+    //   <Routes>
+    //     <Route
+    //       path="/"
+    //       element={
+    //         isLoggedIn ? (
+    //           <MainApp role={isGuest ? 'guest' : 'user'} />
+    //         ) : (
+    //           <LoginSignup onLogin={handleLogin} onGuest={handleGuest} onSignupSuccess={() => {}} />
+    //         )
+    //       }
+    //     />
+
+    //     {/* Login Route */}
+    //     <Route
+    //       path="/login"
+    //       element={
+    //         <LoginSignup onLogin={handleLogin} onGuest={handleGuest} onSignupSuccess={() => {}} />
+    //       }
+    //     />
+
+    //     {/* Admin Login Route */}
+    //     <Route
+    //       path="/admin"
+    //       element={
+    //         isAdmin ? (
+    //           <MainApp role="admin" />
+    //         ) : (
+    //           <AdminLogin onAdminLogin={handleAdminLogin} />
+    //         )
+    //       }
+    //     />
+
+    //     {/* Catch-all Redirect */}
+    //     <Route path="*" element={<Navigate to="/" />} />
+    //   </Routes>
+    // </Router>
+
   );
 };
 

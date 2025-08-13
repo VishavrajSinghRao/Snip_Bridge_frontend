@@ -625,6 +625,7 @@
   overflow-x: auto;
   background: white;
   border-radius: 1rem;
+  margin-top: 20px;
   border: 1px solid #f3f4f6;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -965,4 +966,24 @@
   * {
     transition: none !important;
   }
+}
+
+.pagination-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+.pagination-controls button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

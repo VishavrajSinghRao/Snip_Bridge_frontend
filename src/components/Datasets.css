@@ -1,6 +1,7 @@
 /* Datasets Page Styles */
+
 .page-container {
-  padding: 24px;
+  padding: 16px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -8,11 +9,22 @@
 .page-title {
   font-size: 28px;
   font-weight: 600;
-  color: #1a365d;
   margin-bottom: 24px;
   border-bottom: 3px solid #3182ce;
   padding-bottom: 12px;
+  display: flex;
 }
+
+.datasets-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #000;
+  border-bottom: 3px solid #3182ce;
+  padding-bottom: 12px;
+  display: flex;
+}
+
 
 /* Stats Section */
 .datasets-stats {
@@ -215,23 +227,23 @@
   .datasets-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .datasets-stats {
     flex-direction: column;
   }
-  
+
   .stats-card {
     min-width: auto;
   }
-  
+
   .dataset-meta {
     grid-template-columns: 1fr;
   }
-  
+
   .dataset-actions {
     flex-direction: column;
   }
-  
+
   .dataset-actions button {
     width: 100%;
     justify-content: center;
@@ -242,17 +254,63 @@
   .page-container {
     padding: 16px;
   }
-  
+
   .dataset-card {
     padding: 16px;
   }
-  
+
   .dataset-header {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .dataset-name {
     font-size: 16px;
   }
+}
+
+.datasets-info-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.datasets-info-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 8px;
+}
+
+.dataset-info-heading {
+  font-size: 1.1rem;
+  margin: 15px 0 8px 0;
+  color: #0077cc;
+  font-weight: 600;
+}
+
+.info-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.scrollable-info {
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.scrollable-info p {
+  margin: 4px 0;
+}
+
+.scrollable-info strong {
+  color: #222;
 }

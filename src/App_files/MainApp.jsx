@@ -8,6 +8,8 @@ import Settings from '../components/Settings';
 import Users from '../components/Users';
 import Manual from '../components/Manual';
 
+
+
 const MainApp = ({ role, activeTab, setActiveTab, showAnimation, dashboardStats, apiUsageData, queries, currentQuery, setCurrentQuery, selectedDataset, setSelectedDataset, datasets, loading, executeQuery, queryResults }) => {
   const renderContent = () => {
     switch (activeTab) {

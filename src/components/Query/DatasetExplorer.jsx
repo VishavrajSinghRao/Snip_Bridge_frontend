@@ -1,9 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { Database, Search, Play, AlertCircle, CheckCircle, Filter, Download, BarChart3, Table, Columns, Eye } from 'lucide-react';
 import './DatasetExplorer.css';
+import ResultChart from "./ResultChart";
 
-const backendUrl = 'http://localhost:5000';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const DatasetExplorer = () => {
   const [datasets, setDatasets] = useState([]);
@@ -17,6 +18,9 @@ const DatasetExplorer = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [queryHistory, setQueryHistory] = useState([]);
+  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 10;
 
   useEffect(() => {
     setLoading(true);
@@ -54,6 +58,14 @@ const DatasetExplorer = () => {
     }
   }, [dataset]);
 
+
+  useEffect(() => {
+    fetch(`${backendUrl}/api/get-download-count`)
+      .then(res => res.json())
+      .then(data => setCount(data.count))
+      .catch(err => console.error("Error fetching count:", err));
+  }, []);
+
   useEffect(() => {
     if (dataset && table) {
       setLoading(true);
@@ -61,7 +73,7 @@ const DatasetExplorer = () => {
         .then(res => res.json())
         .then(data => {
           setColumns(data);
-          setSelectedColumns([]); 
+          setSelectedColumns([]);
           setLoading(false);
         })
         .catch(() => {
@@ -74,7 +86,7 @@ const DatasetExplorer = () => {
   const handleRunQuery = async () => {
     setLoading(true);
     setError('');
-    
+
     try {
       const res = await fetch(`${backendUrl}/query`, {
         method: 'POST',
@@ -93,7 +105,7 @@ const DatasetExplorer = () => {
 
       setResult(data);
       setError('');
-      
+
       // Add to query history
       const newQuery = {
         id: Date.now(),
@@ -105,7 +117,7 @@ const DatasetExplorer = () => {
         resultCount: data.length
       };
       setQueryHistory(prev => [newQuery, ...prev.slice(0, 4)]);
-      
+
     } catch (err) {
       setError('Error connecting to backend');
       setResult(null);
@@ -115,8 +127,8 @@ const DatasetExplorer = () => {
   };
 
   const handleColumnToggle = (column) => {
-    setSelectedColumns(prev => 
-      prev.includes(column) 
+    setSelectedColumns(prev =>
+      prev.includes(column)
         ? prev.filter(c => c !== column)
         : [...prev, column]
     );
@@ -130,14 +142,29 @@ const DatasetExplorer = () => {
     setSelectedColumns([]);
   };
 
+
+
   const exportResults = () => {
     if (!result || result.length === 0) return;
-    
+
+    setCount(prevCount => {
+      const newCount = prevCount + 1;
+
+      fetch(`${backendUrl}/api/update-download-count`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: newCount })
+      }).catch(err => console.error("Error updating count:", err));
+
+      return newCount;
+    });
+
+    // CSV export logic
     const csv = [
       Object.keys(result[0]).join(','),
       ...result.map(row => Object.values(row).join(','))
     ].join('\n');
-    
+
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -192,13 +219,14 @@ const DatasetExplorer = () => {
                 Dataset
               </label>
               <div className="select-wrapper">
-                <select 
-                  value={dataset} 
+                <select
+                  value={dataset}
                   onChange={(e) => setDataset(e.target.value)}
                   className="form-select"
                   disabled={loading}
                 >
-                  {datasets.map(d => (
+
+                  {Array.isArray(datasets) && datasets.map(d => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
@@ -212,8 +240,8 @@ const DatasetExplorer = () => {
                 Table
               </label>
               <div className="select-wrapper">
-                <select 
-                  value={table} 
+                <select
+                  value={table}
                   onChange={(e) => setTable(e.target.value)}
                   className="form-select"
                   disabled={loading}
@@ -233,16 +261,16 @@ const DatasetExplorer = () => {
                   Columns ({selectedColumns.length} selected)
                 </label>
                 <div className="column-actions">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={selectAllColumns}
                     className="action-btn select-all"
                     disabled={loading}
                   >
                     Select All
                   </button>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     onClick={clearAllColumns}
                     className="action-btn clear-all"
                     disabled={loading}
@@ -251,7 +279,7 @@ const DatasetExplorer = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="columns-grid">
                 {columns.map(column => (
                   <div key={column} className="column-item">
@@ -291,7 +319,7 @@ const DatasetExplorer = () => {
 
             {/* Execute Button */}
             <div className="form-actions">
-              <button 
+              <button
                 onClick={handleRunQuery}
                 disabled={loading || !dataset || !table || selectedColumns.length === 0}
                 className="execute-button"
@@ -328,22 +356,20 @@ const DatasetExplorer = () => {
                   {result.length === 0 ? 'No results found' : `${result.length} rows returned`}
                 </span>
               </div>
-              
-              {result.length > 0 && (
+
+              {result && result.length > 0 && (
                 <div className="results-actions">
                   <button onClick={exportResults} className="action-button export-btn">
                     <Download className="action-icon" />
                     <span>Export CSV</span>
                   </button>
-                  <button className="action-button visualize-btn">
-                    <BarChart3 className="action-icon" />
-                    <span>Visualize</span>
-                  </button>
+                 
                 </div>
               )}
             </div>
+            <ResultChart data={result} />
 
-            {result.length > 0 && (
+            {result && result.length > 0 && (
               <div className="table-container">
                 <table className="results-table">
                   <thead>
@@ -356,56 +382,46 @@ const DatasetExplorer = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {result.map((row, idx) => (
-                      <tr key={idx} className="table-row">
-                        {Object.values(row).map((val, i) => (
-                          <td key={i} className="table-cell">
-                            {typeof val === 'number' ? val.toLocaleString() : String(val)}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
+
+                    {(result || [])
+                      .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
+                      .map((row, idx) => (
+
+                        <tr key={idx} className="table-row">
+                          {Object.values(row).map((val, i) => (
+                            <td key={i} className="table-cell">
+                              {typeof val === 'number' ? val.toLocaleString() : String(val)}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
             )}
           </div>
         )}
-
-        {/* Query History */}
-        {queryHistory.length > 0 && (
-          <div className="history-card">
-            <h3 className="history-title">Recent Queries</h3>
-            <div className="history-list">
-              {queryHistory.map((query) => (
-                <div key={query.id} className="history-item">
-                  <div className="history-content">
-                    <div className="history-details">
-                      <p className="history-query">
-                        <strong>{query.dataset}</strong> → {query.table}
-                      </p>
-                      <div className="history-meta">
-                        <span className="meta-badge">
-                          {query.columns.length} columns
-                        </span>
-                        <span className="meta-badge">
-                          {query.resultCount} results
-                        </span>
-                        <span className="meta-badge time-badge">
-                          {query.timestamp}
-                        </span>
-                      </div>
-                      {query.filter && (
-                        <p className="history-filter">Filter: {query.filter}</p>
-                      )}
-                    </div>
-                    <button className="history-view-btn">
-                      <Eye className="view-icon" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {result && result.length > 0 && (
+          <div className="pagination-controls">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span>
+              Page {currentPage} of {Math.ceil(result.length / rowsPerPage)}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage(prev =>
+                  Math.min(prev + 1, Math.ceil(result.length / rowsPerPage))
+                )
+              }
+              disabled={currentPage === Math.ceil(result.length / rowsPerPage)}
+            >
+              Next
+            </button>
           </div>
         )}
       </div>
