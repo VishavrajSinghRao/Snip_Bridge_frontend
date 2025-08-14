@@ -298,7 +298,7 @@ const Manual = () => {
           content: `
             <p>Here is a step-by-step walkthrough of how to use the Survey API Gateway platform.</p>
            <div class="video-container">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/718yxpT-eTM?si=fIbVXdPFGAbZP28j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uSIBpUEOgjM?si=8-m1lYyFx6_kGzdd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
           `
