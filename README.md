@@ -11,8 +11,7 @@
 - Vishavraj Singh Rao
 - Hiya Khichi  
 - Eshasvi Soni
-
-**Contact Email:** sc106745@gmail.com  
+  
 **Date:** August 13, 2025
 
 ---
